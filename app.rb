@@ -31,14 +31,3 @@ end
 get "/" do
   send_file File.join(settings.public_folder, "index.html")
 end
-
-# Start the server
-if __FILE__ == $0
-  puts "Starting server..."
-  puts "- Environment: #{settings.environment}"
-  puts "- Port: #{settings.port}"
-  puts "- URL: http://localhost:#{settings.port}"
-  puts "\nReady! Visit http://localhost:#{settings.port} to see the demo"
-
-  Thin::Server.start(app, Port: settings.port, Address: settings.bind)
-end

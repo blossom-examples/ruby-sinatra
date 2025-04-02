@@ -9,7 +9,7 @@ A ready-to-deploy Ruby Sinatra app to get you started quickly on [Blossom](https
 bundle install
 
 # Run the app
-ruby app.rb
+bundle exec puma
 ```
 
 Visit `http://localhost:3000` in your browser to see the demo application.
