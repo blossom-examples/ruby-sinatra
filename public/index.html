@@ -84,7 +84,8 @@
       const resultDiv = document.getElementById('greetingResult');
 
       try {
-        const response = await fetch(`/api/hello?name=${encodeURIComponent(nameInput.value)}`);
+        const name = nameInput.value || nameInput.placeholder;
+        const response = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
         const data = await response.json();
 
         resultDiv.textContent = data.message;
@@ -101,13 +102,14 @@
       const resultDiv = document.getElementById('echoResult');
 
       try {
+        const message = messageInput.value || messageInput.placeholder;
         const response = await fetch('/api/echo', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            message: messageInput.value
+            message: message
           }),
         });
 

@@ -12,7 +12,7 @@ bundle install
 bundle exec puma
 ```
 
-Visit `http://localhost:3000` in your browser to see the demo application.
+Visit `http://localhost:9292` in your browser to see the demo application.
 
 <details>
 <summary>Additional Information</summary>
