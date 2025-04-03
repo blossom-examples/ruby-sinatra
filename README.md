@@ -25,8 +25,7 @@ Visit `http://localhost:9292` in your browser to see the demo application.
 # Get a greeting
 curl http://localhost:3000/api/hello?name=John
 
-# Echo a message
-curl -X POST -H "Content-Type: application/json" \
-     -d '{"message":"Hello"}' http://localhost:3000/api/echo
+# Get a dad joke
+curl http://localhost:3000/api/joke
 ```
 </details>
