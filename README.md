@@ -14,10 +14,6 @@ bundle exec puma
 
 Visit `http://localhost:9292` in your browser to see the demo application.
 
-### Environment Variables
-
-- `PORT`: Change the port (default: 3000)
-
 ### API Endpoints
 
 ```bash
