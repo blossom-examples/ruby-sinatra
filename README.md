@@ -1,5 +1,7 @@
 # Ruby Sinatra Tutorial Deploy on Blossom
 
+[![Blossom Badge](https://img.boltops.com/images/blossom/logos/blossom-readme.png)](https://blossom-cloud.com)
+
 A ready-to-deploy Ruby Sinatra app to get you started quickly on [Blossom](https://blossom-cloud.com).
 
 ## Quick Start
