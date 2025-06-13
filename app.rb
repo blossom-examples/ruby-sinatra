@@ -8,6 +8,10 @@ set :port, ENV["PORT"] || 3000
 set :bind, "0.0.0.0"
 set :public_folder, "public"
 
+# https://github.com/sinatra/sinatra/issues/2065
+# disable it for all environments
+set :host_authorization, { permitted_hosts: [] }
+
 # API Routes
 get "/api/hello" do
   content_type :json
