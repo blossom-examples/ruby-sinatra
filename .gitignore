@@ -25,7 +25,3 @@
 # OS specific
 .DS_Store
 Thumbs.db
-
-# Ruby version specific
-.ruby-version
-.ruby-gemset
