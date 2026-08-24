@@ -34,3 +34,20 @@ curl http://localhost:3000/api/hello?name=John
 # Get a dad joke
 curl http://localhost:3000/api/joke
 ```
+
+### Deployment Qualification Endpoints
+
+`GET /qa` returns the serving release and instance identity. `GET /ready`
+returns `503` until its configured delay passes, or indefinitely when readiness
+is intentionally failed:
+
+```bash
+RELEASE_ID=B READY_DELAY_SECONDS=6 bundle exec puma
+RELEASE_ID=C READY_MODE=fail bundle exec puma
+curl http://localhost:3000/qa
+curl http://localhost:3000/ready
+```
+
+The fixture has no external side effects. Use `/qa` for a continuous public
+request stream and `/ready` for both the Container and reverse-proxy readiness
+checks.

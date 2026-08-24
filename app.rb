@@ -3,6 +3,29 @@ require "json"
 require "time"
 require "net/http"
 
+STARTED_AT = Time.now.utc
+
+def readiness
+  delay = Float(ENV.fetch("READY_DELAY_SECONDS", "0"))
+  ready_at = STARTED_AT + delay
+  ready = ENV.fetch("READY_MODE", "pass") == "pass" && Time.now.utc >= ready_at
+  [ready, ready_at]
+rescue ArgumentError
+  halt 500, {error: "READY_DELAY_SECONDS must be numeric"}.to_json
+end
+
+def qualification_payload
+  ready, ready_at = readiness
+  {
+    release_id: ENV.fetch("RELEASE_ID", "unknown"),
+    instance: ENV.fetch("HOSTNAME", "unknown"),
+    started_at: STARTED_AT.iso8601(6),
+    ready_at: ready_at.iso8601(6),
+    request_at: Time.now.utc.iso8601(6),
+    ready: ready
+  }
+end
+
 # Configure Sinatra
 set :port, ENV["PORT"] || 3000
 set :bind, "0.0.0.0"
@@ -13,6 +36,19 @@ set :public_folder, "public"
 set :host_authorization, { permitted_hosts: [] }
 
 # API Routes
+get "/qa" do
+  content_type :json
+  headers "X-Blossom-Fixture-Release" => ENV.fetch("RELEASE_ID", "unknown")
+  qualification_payload.to_json
+end
+
+get "/ready" do
+  content_type :json
+  payload = qualification_payload
+  status 503 unless payload.fetch(:ready)
+  payload.to_json
+end
+
 get "/api/hello" do
   content_type :json
   name = params[:name] || "World"

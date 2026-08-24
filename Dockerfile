@@ -1,7 +1,7 @@
 FROM ruby:3.4-slim
 
 RUN apt-get update \
-    && apt-get install --yes --no-install-recommends build-essential \
+    && apt-get install --yes --no-install-recommends build-essential curl \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
