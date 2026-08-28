@@ -20,10 +20,10 @@ experience.
 bundle install
 
 # Run the app
-bundle exec puma
+bundle exec puma -b 'tcp://[::]:3000'
 ```
 
-Visit `http://localhost:9292` in your browser to see the demo application.
+Visit `http://localhost:3000` in your browser to see the demo application.
 
 ### API Endpoints
 
@@ -50,4 +50,6 @@ curl http://localhost:3000/ready
 
 The fixture has no external side effects. Use `/qa` for a continuous public
 request stream and `/ready` for both the Container and reverse-proxy readiness
-checks.
+checks. The production startup commands listen on the IPv6 any-address, which
+also accepts IPv4 on Blossom's qualified Linux hosts, so the same endpoints can
+exercise both sides of the dual-stack Environment Network.

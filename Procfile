@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -e production
+web: bundle exec puma -b "tcp://[::]:${PORT:-3000}" -e production

@@ -14,4 +14,4 @@ COPY . .
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["sh", "-c", "bundle exec puma -p ${PORT:-3000} -e production"]
+CMD ["sh", "-c", "bundle exec puma -b \"tcp://[::]:${PORT:-3000}\" -e production"]

@@ -28,7 +28,7 @@ end
 
 # Configure Sinatra
 set :port, ENV["PORT"] || 3000
-set :bind, "0.0.0.0"
+set :bind, ENV.fetch("BIND_ADDRESS", "::")
 set :public_folder, "public"
 
 # https://github.com/sinatra/sinatra/issues/2065
